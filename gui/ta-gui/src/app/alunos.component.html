@@ -15,7 +15,11 @@
 </tr>
 <tr>
    <td><label>e-mail </label></td>
-   <td><input [(ngModel)]="aluno.email"></td>
+   <td><input [(ngModel)]="aluno.email" name="emailbox"></td>
+</tr>
+<tr>
+   <td><label>GitHub </label></td>
+   <td><input [(ngModel)]="aluno.github" name="githubbox"></td>
 </tr>
 </table>
 
@@ -24,11 +28,13 @@
    <th>Nome</th>
    <th>CPF</th>
    <th>e-mail</th>
+   <th>GitHub</th>
 </tr>
 <tr *ngFor="let a of alunos" name="alunolist">
    <td name="nomelist">{{a.nome}}</td>
    <td name="cpflist">{{a.cpf}}</td>
    <td>{{a.email}}</td>
+   <td>{{a.github}}</td>
 </tr>
 </table>
 
