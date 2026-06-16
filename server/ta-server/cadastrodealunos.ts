@@ -3,13 +3,16 @@ import { Aluno } from '../../common/aluno';
 export class CadastroDeAlunos {
   alunos: Aluno[] = [];
 
-  criar(aluno: Aluno): Aluno {
-    var result = null;
-    if (this.cpfNaoCadastrado(aluno.cpf) && this.githubNaoCadastrado(aluno.github)) {
-      result = new Aluno();
-      result.copyFrom(aluno);
-      this.alunos.push(result);
+  criar(aluno: Aluno): any {
+    if (!this.cpfNaoCadastrado(aluno.cpf)) {
+      return { erro: "cpf" };
     }
+    if (!this.githubNaoCadastrado(aluno.github)) {
+      return { erro: "github" };
+    }
+    var result = new Aluno();
+    result.copyFrom(aluno);
+    this.alunos.push(result);
     return result;
   }
 

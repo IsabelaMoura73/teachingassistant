@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
-
 import { Aluno } from './aluno';
 import { AlunoService } from './aluno.service';
 
@@ -12,17 +10,22 @@ import { AlunoService } from './aluno.service';
 export class MetasComponent implements OnInit {
    constructor(private alunoService: AlunoService) {}
 
-   alunos: Aluno[];
+   alunos: Aluno[] = [];
 
    atualizarAluno(aluno: Aluno): void {
       this.alunoService.atualizar(aluno)
-         .catch(erro => alert(erro));
+         .subscribe(
+            a => { if (a == null) alert("Erro ao atualizar aluno"); },
+            msg => { alert(msg.message); }
+         );
    }
 
    ngOnInit(): void {
       this.alunoService.getAlunos()
-         .then(alunos => this.alunos = alunos)
-         .catch(erro => alert(erro));
+         .subscribe(
+            alunos => { this.alunos = alunos; },
+            msg => { alert(msg.message); }
+         );
    }
 
 }

@@ -23,12 +23,14 @@ app.get('/alunos', function (req, res) {
 })
 
 app.post('/aluno', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body; //verificar se é mesmo Aluno!
-  aluno = cadastro.criar(aluno);
-  if (aluno) {
+  var aluno: Aluno = <Aluno> req.body;
+  var resultado = cadastro.criar(aluno);
+  if (resultado && resultado.erro) {
+    res.send({"failure": resultado.erro});
+  } else if (resultado) {
     res.send({"success": "O aluno foi cadastrado com sucesso"});
   } else {
-    res.send({"failure": "O aluno não pode ser cadastrado"});
+    res.send({"failure": "cpf"});
   }
 })
 
