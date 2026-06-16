@@ -1,7 +1,7 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import {Aluno} from '../../gui/ta-gui/src/app/aluno';
+import {Aluno} from '../../common/aluno';
 import {CadastroDeAlunos} from './cadastrodealunos';
 
 var app = express();

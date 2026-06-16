@@ -1,5 +1,5 @@
 import { CadastroDeAlunos } from '../cadastrodealunos';
-import { Aluno } from '../../../gui/ta-gui/src/app/aluno';
+import { Aluno } from '../../../common/aluno';
 
 describe("O cadastro de alunos", () => {
   var cadastro: CadastroDeAlunos;
