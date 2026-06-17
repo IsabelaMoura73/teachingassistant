@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Aluno } from './aluno';
 import { AlunoService } from './aluno.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './alunos.component.html',
@@ -9,12 +8,10 @@ import { AlunoService } from './aluno.service';
 })
 export class AlunosComponent implements OnInit {
    constructor(private alunoService: AlunoService) {}
-
    aluno: Aluno = new Aluno();
    alunos: Aluno[] = [];
    cpfduplicado: boolean = false;
    githubduplicado: boolean = false;
-
    criarAluno(a: Aluno): void {
      this.alunoService.criar(a)
         .subscribe(
@@ -30,12 +27,21 @@ export class AlunosComponent implements OnInit {
           msg => { alert(msg.message); }
         );
    }
-
+   removerAluno(a: Aluno): void {
+     this.alunoService.remover(a.cpf)
+        .subscribe(
+          sucesso => {
+            if (sucesso) {
+              this.alunos = this.alunos.filter(al => al.cpf !== a.cpf);
+            }
+          },
+          msg => { alert(msg.message); }
+        );
+   }
    onMove(): void {
       this.cpfduplicado = false;
       this.githubduplicado = false;
    }
-
    ngOnInit(): void {
      this.alunoService.getAlunos()
          .subscribe(
@@ -43,5 +49,4 @@ export class AlunosComponent implements OnInit {
             msg => { alert(msg.message); }
          );
    }
-
 }

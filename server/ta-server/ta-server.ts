@@ -44,6 +44,15 @@ app.put('/aluno', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.delete('/aluno/:cpf', function (req: express.Request, res: express.Response) {
+  var removido = cadastro.remover(req.params.cpf);
+  if (removido) {
+    res.send({"success": "O aluno foi removido com sucesso"});
+  } else {
+    res.send({"failure": "O aluno não pode ser removido"});
+  }
+})
+
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })

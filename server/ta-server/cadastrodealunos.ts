@@ -16,6 +16,15 @@ export class CadastroDeAlunos {
     return result;
   }
 
+  remover(cpf: string): boolean {
+    const index = this.alunos.findIndex(a => a.cpf == cpf);
+    if (index >= 0) {
+      this.alunos.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+
   cpfNaoCadastrado(cpf: string): boolean {
      return !this.alunos.find(a => a.cpf == cpf);
   }
